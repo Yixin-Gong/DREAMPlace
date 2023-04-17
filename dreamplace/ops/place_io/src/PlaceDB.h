@@ -13,6 +13,9 @@
 #include <limbo/parsers/verilog/bison/VerilogDriver.h> // verilog parser
 #include <limbo/parsers/bookshelf/bison/BookshelfDriver.h> // bookshelf parser 
 #include <limbo/parsers/gdsii/stream/GdsWriter.h> // GDSII writer 
+
+#include <limbo/parsers/ContestFile/ContestParser.h> //contest file parser
+
 #include <limbo/string/String.h>
 
 #include "Node.h"
@@ -25,6 +28,9 @@
 #include "Site.h"
 #include "Params.h"
 #include "BenchMetrics.h"
+
+
+#include "Technologies.h"
 
 DREAMPLACE_BEGIN_NAMESPACE
 
@@ -394,6 +400,29 @@ class PlaceDB : public DefParser::DefDataBase
         virtual void add_bookshelf_blockage_layers(std::string const&, std::vector<std::string> const&);
         virtual void set_bookshelf_design(std::string& name);
         virtual void bookshelf_end(); 
+
+
+
+        ///=== ContestFile Callbacks ====
+        virtual void resize_file_node_terminals(int nn, int nt);
+        virtual void resize_file_net(int n);
+        virtual void resize_file_pin(int n);
+        virtual void resize_file_row(int n);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// derive MultiRowAttr of a cell 
         void deriveMultiRowAttr(Node& node);
